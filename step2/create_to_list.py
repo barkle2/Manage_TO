@@ -120,6 +120,9 @@ for i in range(19, total_rows):
     elif dept_name == '차관실':
         lookup_key = '차관'
         
+    # Skip SanAn HQ Office (Row 440, Index 439) to avoid duplicate Political entry
+    if i == 439: continue
+        
     counts_found = False
     
     # Check G
@@ -187,7 +190,7 @@ for i in range(19, total_rows):
         # Fallback for Committee
         if '위원회' in dept_name: unit_type = '위원회'
         else: continue
-            
+    
     # Filter SanAn HQ (Na grade) exclusion
     if dept_name == '산업안전보건본부': continue
     if unit_type == '본부' and '산업안전보건본부' not in dept_name: continue
